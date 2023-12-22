@@ -15,6 +15,17 @@ Welcome to the Password Manager project! This password manager is a secure and c
 - **Password Generator:** Generate strong, random passwords to enhance the security of your accounts.
 
 
+## Supported Versions
+
+Use this section to tell people about which versions of your project are
+currently being supported with security updates.
+
+| Version | Supported          | Publicity          |
+| ------- | ------------------ | ------------------ |
+| 2.0   | :white_check_mark: | Public |
+| 1.0-GEdition   | :white_check_mark:                |Private|
+| 1.0   | :x: |Public|
+| 0.0  | :x:                |Private|
 
 ## Usage
 
