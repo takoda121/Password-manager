@@ -1,4 +1,4 @@
-# Password Manager README
+# Password Manager 2.0
 
 ## Introduction
 
