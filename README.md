@@ -1,5 +1,5 @@
-# Password Manager 2.0
-
+# Password Manager 2.0  
+# Please, do not use. We do not use real encryption.
 ## Introduction
 
 Welcome to the Password Manager project! This password manager is a secure and convenient way to store and manage your passwords. It aims to provide a semi user-friendly interface but prioritizing the security of your sensitive information.
@@ -20,8 +20,8 @@ Welcome to the Password Manager project! This password manager is a secure and c
 
 | Version | Supported          | Publicity          |
 | ------- | ------------------ | ------------------ |
-| 2.0   | :white_check_mark: | Public |
-| 1.0-GEdition   | :white_check_mark:                |Private|
+| 2.0   | :x: | Public |
+| 1.0-GEdition   | :x:                |Private|
 | 1.0   | :x: |Public|
 | 0.0  | :x:                |Private|
 
