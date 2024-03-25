@@ -23,7 +23,7 @@ Welcome to the Password Manager project! This password manager is a secure and c
 
 | Version | Supported          | Publicity          |
 | ------- | ------------------ | ------------------ |
-| 3.0-ebb   | :x: | Encryption Beta Branch |
+| 3.0-ebb   | ✔️ | Encryption Beta Branch |
 | 2.0   | :x: | Public |
 | 1.0-GEdition   | :x:                |Private|
 | 1.0   | :x: |Public|
