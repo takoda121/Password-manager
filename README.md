@@ -20,6 +20,7 @@ Welcome to the Password Manager project! This password manager is a secure and c
 
 ## Supported Versions
 
+### When 3.0 releases we will start removing versions from this table.
 
 | Version | Supported          | Publicity          |
 | ------- | ------------------ | ------------------ |
