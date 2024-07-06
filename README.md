@@ -1,6 +1,6 @@
 # Password Manager 2.0  
-# Please, do not use. We do not use real encryption.  
-# Updates faster on [Gitlab](https://gitlab.com/takoda121/Password-manager)
+## Real encryption coming in the next 2 weeks
+### Encryption already on [Gitlab](https://gitlab.com/takoda121/Password-manager)
 ## Introduction
 
 Welcome to the Password Manager project! This password manager is a secure and convenient way to store and manage your passwords. It aims to provide a semi user-friendly interface but prioritizing the security of your sensitive information.
