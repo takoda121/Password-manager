@@ -1,5 +1,5 @@
 # Password Manager 2.0  
-## Real encryption coming in the next 2 weeks
+## Real encryption coming today
 ### Encryption already on [Gitlab](https://gitlab.com/takoda121/Password-manager)
 ## Introduction
 
