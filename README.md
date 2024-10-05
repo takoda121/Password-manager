@@ -1,13 +1,12 @@
-# Password Manager 2.0  
-## Real encryption coming today
-### Encryption already on [Gitlab](https://gitlab.com/takoda121/Password-manager)
+# Password Manager 3.0  
+# Now with real encryption.
 ## Introduction
 
 Welcome to the Password Manager project! This password manager is a secure and convenient way to store and manage your passwords. It aims to provide a semi user-friendly interface but prioritizing the security of your sensitive information.
 
 ## Features
 
-- **Secure Storage:** All passwords are securely encrypted using basic security measures.
+- **Secure Storage:** All passwords are securely encrypted using AES-256.
   
 - **User-Friendly Interface:** The application is designed with simplicity in mind, making it easy for users to navigate and manage their passwords.
 
@@ -16,15 +15,17 @@ Welcome to the Password Manager project! This password manager is a secure and c
 - **Password Generator:** Generate strong, random passwords to enhance the security of your accounts.
 
 
-## Supported Versions
+## Supported Versions  
 
+> From >= 3.1 we will start absolutly phase out versions.
 
 | Version | Supported          | Publicity          |
 | ------- | ------------------ | ------------------ |
-| 2.0   | :x: | Public |
-| 1.0-GEdition   | :x:                |Private|
-| 1.0   | :x: |Public|
-| 0.0  | :x:                |Private|
+| 3.0   | ✅ | Public (GitLab) |
+| 2.0   | ❌ | Public |
+| 1.0-GEdition   | ❌                |Private|
+| 1.0   | ❌ |Public|
+| 0.0  | ❌                |Private|
 
 ## Usage
 
@@ -40,11 +41,13 @@ Welcome to the Password Manager project! This password manager is a secure and c
 
 Security is a top priority for the Password Manager project. Here are some key security features:
 
-- **Encryption:** Passwords are stored using basic security measures to ensure confidentiality.
+- **Encryption:** Passwords are stored using AES-256 to ensure confidentiality.
 
-- **Master Password:** Your master password is never stored*, ensuring that only you can access your stored passwords.
+- **Master Password:** Your master password is never stored*, ensuring that only you can access your stored passwords.  
+>Your password isn't stored only [hashed](https://en.wikipedia.org/wiki/Hash_function)
 
-- **Secure Connection:** Communication between the application and the storage server is encrypted to prevent eavesdropping.
+- **Secure Connection:** Communication between the application and the storage server is encrypted to prevent eavesdropping.*  
+> Only Windows version.
 
 ## Contributing
 

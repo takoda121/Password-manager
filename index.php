@@ -1,8 +1,9 @@
 <!------ Made By Take ---->
 
 
-
 <?php
+include "public.php";
+$lmaodb = json_decode(file_get_contents("passwords.json"), true);
 function topsekurtech($key, $data) {
     $result = "";
     for ($a = 0, $b = 0; $a < strlen($data); $a++, $b++) {
@@ -15,18 +16,31 @@ function topsekurtech($key, $data) {
 $count = 0;
 
 if (isset($_POST["website"])) {
+    if ($lmaodb["hash"] != hash('sha256', $_POST["enckey"])){
+        echo '  <link rel="stylesheet" href="styles.css">';
+        echo ("<div class='alert'>⚠️Wrong password!⚠️");
+        echo ("</div>");
+        echo ("<br><br>Hash you inserted:".hash('sha256', $_POST["enckey"]));
+        echo ("<br><br>Actual hash:".$lmaodb["hash"]);
+        die();
+    }
     $negrlol = json_decode(file_get_contents("passwords.json"), true);
-    array_push($negrlol["username"], base64_encode(topsekurtech($_POST["enckey"], $_POST["username"])));
-    array_push($negrlol["website"], base64_encode(topsekurtech($_POST["enckey"], $_POST["website"])));
-    array_push($negrlol["password"], base64_encode(topsekurtech($_POST["enckey"], $_POST["password"])));
+    array_push($negrlol["username"], openssl_encrypt($_POST["username"], $encryption_method,$_POST["enckey"], 0, $encryption_iv));
+    array_push($negrlol["website"], openssl_encrypt($_POST["website"], $encryption_method,$_POST["enckey"], 0, $encryption_iv));
+    array_push($negrlol["password"], openssl_encrypt($_POST["password"], $encryption_method,$_POST["enckey"], 0, $encryption_iv));
     $dbomg = fopen("passwords.json", "w");
     fwrite($dbomg, json_encode($negrlol));
 }
 
 if (isset($_POST["login"])) {
+    echo ("<script>");
+    echo ("setTimeout(function() {");
+    echo ("    window.location.href = '/logged.out.html';");
+    echo ("}, 300000); // 5 minutes in milliseconds");
+    echo ("</script>");
+
     echo "<center>";
-    echo'<h1>Password Manager V2</h1>';
-    $lmaodb = json_decode(file_get_contents("passwords.json"), true);
+    echo'<h1>Password Manager V3</h1>';
     echo '<!DOCTYPE html>';
     echo '<html lang="en">';
     echo '<head>';
@@ -35,11 +49,23 @@ if (isset($_POST["login"])) {
     echo '  <title>Form Redesign</title>';
     echo '  <link rel="stylesheet" href="styles.css">';
     echo '</head>';
+    if ($lmaodb["hash"] == "empty" || $lmaodb["hash"] == ""){
+        $lmaodb["hash"] = hash('sha256', $_POST["login"]);
+        $dbomg = fopen("passwords.json", "w");
+        fwrite($dbomg, json_encode($lmaodb));
+    }
+    elseif ($lmaodb["hash"] != hash('sha256', $_POST["login"])){
+        echo ("<div class='alert'>⚠️Wrong password!⚠️");
+        echo ("</div>");
+        echo ("<br><br>Hash you inserted:".hash('sha256', $_POST["login"]));
+        echo ("<br><br>Actual hash:".$lmaodb["hash"]);
+        die();
+    }
     echo '<body>';
     echo '<div class="additional-box">';
     echo '<h6>Your website info:<br></h6>';
     foreach ($lmaodb["password"] as $dba) {
-        echo " USER: <b>" . topsekurtech($_POST["login"], base64_decode($lmaodb["username"][$count])) . "</b> PASS: <b>" . topsekurtech($_POST["login"], base64_decode($dba)) . " </b>" . " Website: <b>" . topsekurtech($_POST["login"], base64_decode($lmaodb["website"][$count])) . "</b><br>";
+        echo " USER: <b>" . openssl_decrypt($lmaodb["username"][$count], $encryption_method,$_POST["login"], 0, $encryption_iv) . "</b> PASS: <b>" . openssl_decrypt($dba, $encryption_method,$_POST["login"], 0, $encryption_iv) . " </b>" . " Website: <b>" . openssl_decrypt($lmaodb["website"][$count], $encryption_method,$_POST["login"], 0, $encryption_iv) . "</b><br>";
         $count++;
     }
     echo '</div><br><br>';
@@ -80,7 +106,12 @@ if (isset($_POST["login"])) {
             margin: 0;
             padding: 0;
         }
-
+        .alert {
+         padding: 20px;
+          background-color: #f44336; /* Red */
+         color: white;
+          margin-bottom: 15px;
+         }
         center {
             text-align: center;
         }
@@ -124,15 +155,24 @@ if (isset($_POST["login"])) {
 </head>
 <body>
     <center>
-        <h1>Password Manager V2</h1>
+        <h1>Password Manager V3</h1>
+        <?php
+            $lmaodb = json_decode(file_get_contents("passwords.json"), true);
+            if ($lmaodb["version"] != 3) {
+                $url = "'http://localhost:8080/convert.php'";
+                echo ("<div class='alert'>⚠️Convert your password to the new Encryption method.⚠️");
+                echo ('<input type="submit" onclick="window.location.href = '.$url.'" value="Convert Your Passwords.">');
+                echo ("</div>");
+            }
+        ?>
         <form name="submitform" method="post">
             <input type="text" name="login" placeholder="Your decryption key"/>
             <input type="submit" value="Submit">
-            <a href="forgotpass.html">Forgot Password</a>
         </form>
     </center>
     <div style="text-align: center; color: #fff; margin-top: 20px; position: fixed; bottom: 0; width: 100%; background-color: #2c2c2c; padding: 10px;">
-        <p>Security Notice: This password manager is decently secure but I still recommend using <a href="https://bitwarden.com/">Bitwarden</a></p>
+    <a href="https://gitlab.com/takoda121/Password-manager" target="_blank"><img src="https://docs.gitlab.com/assets/images/gitlab-logo.svg" alt="GitLab Repository" aria-hidden="true" role="img" data-ot-ignore=""></a>
+        <p>Security Notice: This password manager is decently secure but I still recommend using <a href="https://bitwarden.com/">Bitwarden</a><br>3.0 Update: Added AES-256 encryption.</p>
 
     </div>
 </body>

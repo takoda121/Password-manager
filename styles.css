@@ -29,6 +29,22 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
+
+  
+  .alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+  }
+
+  .ok {
+    padding: 20px;
+    background-color: #009200; /* Red */
+    color: white;
+    margin-bottom: 15px;
+  }
+
   input {
     width: 100%;
     padding: 8px;
@@ -49,4 +65,3 @@ body {
   input[type="submit"]:hover {
     background-color: #27ae60;
   }
-  
