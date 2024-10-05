@@ -18,14 +18,19 @@ Welcome to the Password Manager project! This password manager is a secure and c
 ## Supported Versions  
 
 > From >= 3.1 we will start absolutly phase out versions.
+> ✅ = Fully supported
+> ❌ = Limited support (Only for convering keys)  
+> Ended = Has reached EOL  
+> GEdition = A edition used by the creator and is a beta for the upcoming edition.
 
-| Version | Supported          | Publicity          |
+| Version | Support          | Publicity          |
 | ------- | ------------------ | ------------------ |
-| 3.0   | ✅ | Public (GitLab) |
+| 3.9-GEdition   | ✅ | Private |
+| 3.0   | ✅ | Public |
 | 2.0   | ❌ | Public |
-| 1.0-GEdition   | ❌                |Private|
-| 1.0   | ❌ |Public|
-| 0.0  | ❌                |Private|
+| 1.0-GEdition   | Ended                |Hosted on 1 server|
+| 1.0   | Ended |Archived|
+| 0.0  | Ended                |Deleted|
 
 ## Usage
 
