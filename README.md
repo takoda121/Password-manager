@@ -17,11 +17,11 @@ Welcome to the Password Manager project! This password manager is a secure and c
 
 ## Supported Versions  
 
-> From >= 3.1 we will start absolutly phase out versions.
-> ✅ = Fully supported
-> ❌ = Limited support (Only for convering keys)  
-> Ended = Has reached EOL  
-> GEdition = A edition used by the creator and is a beta for the upcoming edition.
+> From >= 3.1 we will start absolutly phase out versions.  
+> ✅ = Fully supported  
+> ❌ = Limited support (Only for convering keys)    
+> Ended = Has reached EOL    
+> GEdition = A edition used by the creator and is a beta for the upcoming edition.  
 
 | Version | Support          | Publicity          |
 | ------- | ------------------ | ------------------ |
