@@ -40,7 +40,7 @@ if (isset($_POST["login"])) {
     echo ("</script>");
 
     echo "<center>";
-    echo'<h1>Password Manager V3</h1>';
+    echo'<h1>Password Manager V3.9</h1>';
     echo '<!DOCTYPE html>';
     echo '<html lang="en">';
     echo '<head>';
@@ -155,24 +155,38 @@ if (isset($_POST["login"])) {
 </head>
 <body>
     <center>
-        <h1>Password Manager V3</h1>
+        <h1>Password Manager V3.9</h1>
         <?php
             $lmaodb = json_decode(file_get_contents("passwords.json"), true);
-            if ($lmaodb["version"] != 3) {
-                $url = "'http://localhost:8080/convert.php'";
-                echo ("<div class='alert'>⚠️Convert your password to the new Encryption method.⚠️");
+            if ($lmaodb["version"] < 3) {
+                $url = "'http://localhost:8080/convert2.php'";
+                echo ("<div class='alert'>⚠️Convert your passwords to the new Encryption method.⚠️");
                 echo ('<input type="submit" onclick="window.location.href = '.$url.'" value="Convert Your Passwords.">');
                 echo ("</div>");
             }
+            if ($lmaodb["version"] < 4) {
+                echo ("<div class='alert'>⚠️You will not be able to use the desktop app⚠️<br>");
+                echo ('For development reasons once the version 3.9.5 releases you will be forced to update your encryption method as well as the server!');
+                echo ("</div>");
+            }
+
+            
+            if ($lmaodb["version"] = 3 || $lmaodb["version"] = 4 ){
+                echo ('<form name="submitform" method="post">');
+                echo ('<input type="text" name="login" placeholder="Your decryption key"/>');
+                if ($lmaodb["hash"] == "empty" || $lmaodb["hash"] == ""){
+                    echo ('<input type="submit" value="Create">');
+                }
+                else{
+                    echo ('<input type="submit" value="Submit">');
+                }
+                echo ('</form>');
+            }
         ?>
-        <form name="submitform" method="post">
-            <input type="text" name="login" placeholder="Your decryption key"/>
-            <input type="submit" value="Submit">
-        </form>
+
     </center>
     <div style="text-align: center; color: #fff; margin-top: 20px; position: fixed; bottom: 0; width: 100%; background-color: #2c2c2c; padding: 10px;">
-    <a href="https://gitlab.com/takoda121/Password-manager" target="_blank"><img src="https://docs.gitlab.com/assets/images/gitlab-logo.svg" alt="GitLab Repository" aria-hidden="true" role="img" data-ot-ignore=""></a>
-        <p>Security Notice: This password manager is decently secure but I still recommend using <a href="https://bitwarden.com/">Bitwarden</a><br>3.0 Update: Added AES-256 encryption.</p>
+        <p>Security Notice: This password manager is decently secure but I still recommend using <a href="https://bitwarden.com/">Bitwarden</a><br>3.9 Update: QOL Updates + 3.9.5 warning.</p>
 
     </div>
 </body>

@@ -35,6 +35,8 @@ foreach ($lmaodb["username"] as $dba) {
     $lmaodb["username"][$countb] = $encryption;
     $countb++;
 }
+$lmaodb["apikey"] = hash('sha384', $_POST["newlogin"]); //Why the fuck did I decide to go with sha384??
+$lmaodb["version"] = 4;
 $dbomg = fopen("passwords.json", "w");
 fwrite($dbomg, json_encode($lmaodb));
 }
@@ -109,25 +111,25 @@ fwrite($dbomg, json_encode($lmaodb));
 </head>
 <body>
     <center>
-        <h1>Password Recovery v2 --> v3</h1>
+        <h1>Password Recovery v2 --> v4</h1>
         <?php
             $lmaodb = json_decode(file_get_contents("passwords.json"), true);
-            if ($lmaodb["version"] == 3) {
-                $url = "'http://localhost:8080/convert.php'";
-                echo ("<div class='ok'>✅Your password is already converted to V3✅");
+            if ($lmaodb["version"] == 4) {
+                $url = "'http://localhost:8080/convert2.php'";
+                echo ("<div class='ok'>✅Your password is already converted to V4✅");
                 echo ("</div>");
             }
             else{
                  echo('<form name="submitform" method="post">');
                  echo('<input type="text" name="login" placeholder="Your decryption key"/>');
                  echo('<input type="text" name="newlogin" placeholder="New decryption key (can be the same)"/>');
-                 echo('<input type="submit" value="Recover">');
+                 echo('<input type="submit" value="Convert">');
                  echo('</form>');
             }
         ?>
     </center>
     <div style="text-align: center; color: #fff; margin-top: 20px; position: fixed; bottom: 0; width: 100%; background-color: #2c2c2c; padding: 10px;">
-        <p>Security Notice: This password manager is decently secure but I still recommend using <a href="https://bitwarden.com/">Bitwarden</a><br>3.0 Update: Added AES-256 encryption.</p>
+        <p>Security Notice: This password manager is decently secure but I still recommend using <a href="https://bitwarden.com/">Bitwarden</a></p>
 
     </div>
 </body>
